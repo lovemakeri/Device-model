@@ -1,14 +1,26 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      {{title}}
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
+
+  <div *ngIf="!myDevice; else elseBlock">
+  
   <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
+      Would you like to know the model of your device?
   </p>
+<button ion-button (click)="ShowModel()">yes</button> <button ion-button (click)="exit()">no</button>
+  </div>
+
+  <ng-template #elseBlock>
+    <p>
+    The model of your device is {{myDevice.manufacturer}} {{myDevice.model}}
+  </p> 
+  <button ion-button (click)="ShowModel()">Detect again</button>
+  </ng-template>
+
 </ion-content>
